@@ -32,46 +32,8 @@ const plans = [
 ]
 
 export default function SubscriptionPage() {
-    const [loading, setLoading] = useState<string | null>(null)
-
-    const handlePayment = async (plan: typeof plans[0]) => {
-        setLoading(plan.id)
-        try {
-            const resp = await fetch('/api/razorpay/order', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: plan.price, planId: plan.id })
-            })
-            const order = await resp.json()
-
-            const options = {
-                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-                amount: order.amount,
-                currency: "INR",
-                name: "Ascendia EdTech",
-                description: `Subscription for ${plan.name}`,
-                order_id: order.id,
-                handler: function (response: any) {
-                    alert("Payment Successful! Signature: " + response.razorpay_signature)
-                    // In real app, we'd verify the signature here or wait for webhook
-                    window.location.reload()
-                },
-                prefill: {
-                    name: "Aarav Sharma",
-                    email: "aarav@example.com",
-                },
-                theme: {
-                    color: "#2563eb",
-                },
-            }
-
-            const rzp = new (window as any).Razorpay(options)
-            rzp.open()
-        } catch (error) {
-            console.error("Payment Init Error:", error)
-        } finally {
-            setLoading(null)
-        }
+    const handleContact = () => {
+        alert("Subscriptions are currently disabled. Please contact support@ascendia.com for manual enrollment.")
     }
 
     return (
@@ -115,12 +77,11 @@ export default function SubscriptionPage() {
                         </div>
 
                         <Button
-                            onClick={() => handlePayment(plan)}
-                            disabled={loading !== null}
+                            onClick={handleContact}
                             variant={plan.popular ? 'default' : 'outline'}
                             className="w-full h-12"
                         >
-                            {loading === plan.id ? <Loader2 className="w-5 h-5 animate-spin" /> : "Subscribe Now"}
+                            Get Started
                         </Button>
                     </motion.div>
                 ))}
@@ -130,28 +91,25 @@ export default function SubscriptionPage() {
                 <div className="flex items-center gap-4 p-6 glass rounded-2xl border border-white/5">
                     <ShieldCheck className="w-8 h-8 text-primary" />
                     <div>
-                        <p className="font-bold">Secure Payment</p>
-                        <p className="text-xs text-foreground/40">100% encrypted & secure.</p>
+                        <p className="font-bold">Expert Support</p>
+                        <p className="text-xs text-foreground/40">Dedicated assistance for your journey.</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-4 p-6 glass rounded-2xl border border-white/5">
                     <Zap className="w-8 h-8 text-accent" />
                     <div>
                         <p className="font-bold">Instant Activation</p>
-                        <p className="text-xs text-foreground/40">Unlock features immediately.</p>
+                        <p className="text-xs text-foreground/40">Unlock features after enrollment.</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-4 p-6 glass rounded-2xl border border-white/5">
                     <CreditCard className="w-8 h-8 text-primary" />
                     <div>
                         <p className="font-bold">Flexible Plans</p>
-                        <p className="text-xs text-foreground/40">Cancel or upgrade anytime.</p>
+                        <p className="text-xs text-foreground/40">Tailored to your preparation needs.</p>
                     </div>
                 </div>
             </div>
-
-            {/* Razorpay Script */}
-            <script src="https://checkout.razorpay.com/v1/checkout.js" async />
         </div>
     )
 }

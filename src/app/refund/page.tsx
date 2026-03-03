@@ -46,7 +46,7 @@ export default function RefundPolicy() {
                         <section>
                             <h2 className="text-2xl font-semibold text-foreground mb-4">3. Refund Process</h2>
                             <p>
-                                To request a refund, please email us at <strong>support@ascendia.com</strong> with your order details and reason for the request. Once approved, the refund will be processed to your original payment method (via Razorpay) within 5-7 working days.
+                                To request a refund, please email us at <strong>support@ascendia.com</strong> with your order details and reason for the request. Once approved, the refund will be processed to your original payment method within 5-7 working days.
                             </p>
                         </section>
 

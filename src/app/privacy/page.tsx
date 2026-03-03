@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
                             <ul className="list-disc pl-6 mt-2 space-y-2">
                                 <li><strong>Identity Data:</strong> includes first name, last name, username or similar identifier.</li>
                                 <li><strong>Contact Data:</strong> includes email address and telephone numbers.</li>
-                                <li><strong>Financial Data:</strong> includes payment card details (processed securely via Razorpay).</li>
+                                <li><strong>Financial Data:</strong> includes payment card details (processed securely).</li>
                                 <li><strong>Transaction Data:</strong> includes details about payments to and from you and other details of products and services you have purchased from us.</li>
                                 <li><strong>Technical Data:</strong> includes internet protocol (IP) address, your login data, browser type and version, and location.</li>
                             </ul>
